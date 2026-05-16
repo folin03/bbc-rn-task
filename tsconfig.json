@@ -6,7 +6,8 @@
       "@articles": ["./src/features/articles"],
       "@articles/*": ["./src/features/articles/*"],
       "@common/*": ["./src/common/*"],
-      "@theme": ["./src/theme"]
+      "@theme": ["./src/theme"],
+      "@api/*": ["./src/api/*"]
     }
   },
   "include": ["**/*.ts", "**/*.tsx"],

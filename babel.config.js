@@ -9,6 +9,7 @@ module.exports = {
           '@articles': './src/features/articles', // Point this to your actual folder path
           '@common': './src/common',
           '@theme': './src/theme',
+          '@api': './src/api',
         },
       },
     ],
