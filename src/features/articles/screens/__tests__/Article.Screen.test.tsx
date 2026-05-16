@@ -99,4 +99,10 @@ describe('ArticlesScreen', () => {
 
     expect(getByText('Mock Article 1')).toBeTruthy();
   });
+
+  it('renders SortBySwitch', () => {
+    const { getByTestId } = render(<ArticlesScreen />);
+
+    expect(getByTestId('article-sort-by-switch')).toBeTruthy();
+  });
 });
