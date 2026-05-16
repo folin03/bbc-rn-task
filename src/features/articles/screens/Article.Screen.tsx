@@ -14,6 +14,7 @@ import { AxiosError } from 'axios';
 import { MutedSubText } from '@common/components/Text';
 import { ArticleCard } from '@articles/components/ArticleCard';
 import { EmptyScreenInfo } from '@articles/components/EmptyScreenInfo';
+import { SortBySwitch } from '@articles/components/SortBySwitch';
 
 export const ArticlesScreen: FC = () => {
   const { selectedDomains, sortBy } = useArticleFiltersStore();
@@ -39,7 +40,10 @@ export const ArticlesScreen: FC = () => {
 
   return (
     <SafeAreaContainer style={styles.safeContainer} fullFlex edges={['top']}>
-      <ScreenHeader title="All NEWS" />
+      <View>
+        <ScreenHeader title="All NEWS" />
+        <SortBySwitch />
+      </View>
       <FlashList
         testID="domain-carousel"
         horizontal
