@@ -3,6 +3,7 @@ import { fireEvent, render } from '@testing-library/react-native';
 import { ArticlesScreen } from '../Article.Screen';
 import { useArticleFiltersStore } from '@articles/store/useArticleFilters.Store';
 import { DOMAINS } from '@articles/constants';
+import { useArticles } from '@articles/hooks/useArticles';
 
 // Mock react-native-safe-area-context
 jest.mock('react-native-safe-area-context', () => ({
@@ -10,8 +11,33 @@ jest.mock('react-native-safe-area-context', () => ({
   SafeAreaProvider: ({ children }: { children: React.ReactNode }) => children,
 }));
 jest.mock('@articles/store/useArticleFilters.Store');
+jest.mock('@articles/hooks/useArticles', () => ({
+  useArticles: jest.fn(),
+}));
 
 const mockUseArticleFiltersStore = jest.mocked(useArticleFiltersStore);
+const mockUseArticles = useArticles as jest.Mock;
+
+const mockArticles = [
+  {
+    url: 'https://example.com/article-1',
+    title: 'Mock Article 1',
+    source: { id: 'bbc-news', name: 'BBC News' },
+    publishedAt: '2026-05-15T12:00:00Z',
+  },
+];
+
+const defaultArticlesResult = {
+  data: { pages: [{ articles: mockArticles }] },
+  isLoading: false,
+  isFetchingNextPage: false,
+  fetchNextPage: jest.fn(),
+  hasNextPage: false,
+  refetch: jest.fn(),
+  isRefetching: false,
+  isError: false,
+  error: null,
+};
 
 describe('ArticlesScreen', () => {
   beforeEach(() => {
@@ -22,6 +48,7 @@ describe('ArticlesScreen', () => {
       setSortBy: jest.fn(),
       toggleDomain: jest.fn(),
     });
+    mockUseArticles.mockReturnValue(defaultArticlesResult);
   });
 
   it('renders header All NEWS correctly', () => {
@@ -65,5 +92,11 @@ describe('ArticlesScreen', () => {
     fireEvent.press(chips[0]);
     expect(mockToggleDomain).toHaveBeenCalledTimes(1);
     expect(mockToggleDomain).toHaveBeenCalledWith('bbc.com');
+  });
+
+  it('renders article items via ArticleCard', () => {
+    const { getByText } = render(<ArticlesScreen />);
+
+    expect(getByText('Mock Article 1')).toBeTruthy();
   });
 });

@@ -24,7 +24,9 @@ export const ArticleCard: FC<ArticleCardProps> = ({ article, onPress }) => {
       onPress={() => onPress?.(article)}
     >
       <View style={styles.container}>
-        <DateText>{new Date(article.publishedAt).toLocaleString()}</DateText>
+        <DateText style={styles.date}>
+          {new Date(article.publishedAt).toLocaleString()}
+        </DateText>
         {/* image has no alt description for accessibility, if alt description is needed,
          we may try to access the full article and look for alt for the img there,
          this would be lenghy process though. At this point we exclude the img from the reader */}
@@ -61,5 +63,8 @@ const styles = StyleSheet.create({
   },
   articleContainer: {
     marginBottom: 20,
+  },
+  date: {
+    textAlign: 'right',
   },
 });
