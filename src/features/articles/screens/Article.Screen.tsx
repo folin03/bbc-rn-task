@@ -1,4 +1,4 @@
-import React, { FC, useMemo } from 'react';
+import React, { FC, useMemo, useState } from 'react';
 import { ActivityIndicator, StyleSheet, View } from 'react-native';
 
 import SafeAreaContainer from '@common/components/containers/SafeArea.Container';
@@ -15,8 +15,12 @@ import { MutedSubText } from '@common/components/Text';
 import { ArticleCard } from '@articles/components/ArticleCard';
 import { EmptyScreenInfo } from '@articles/components/EmptyScreenInfo';
 import { SortBySwitch } from '@articles/components/SortBySwitch';
+import { Article } from '@articles/types';
+import { ArticleDetailModal } from '@articles/components/ArticleDetailModal';
 
 export const ArticlesScreen: FC = () => {
+  const [selectedArticle, setSelectedArticle] = useState<Article | undefined>();
+
   const { selectedDomains, sortBy } = useArticleFiltersStore();
   const {
     data,
@@ -69,7 +73,7 @@ export const ArticlesScreen: FC = () => {
         <FlashList
           data={articles}
           renderItem={({ item }) => (
-            <ArticleCard article={item} onPress={() => {}} />
+            <ArticleCard article={item} onPress={setSelectedArticle} />
           )}
           keyExtractor={(item, index) => `${item.url}-${index}`}
           contentContainerStyle={styles.contentContainer}
@@ -96,6 +100,10 @@ export const ArticlesScreen: FC = () => {
           }
         />
       )}
+      <ArticleDetailModal
+        selectedArticle={selectedArticle}
+        onPressClose={() => setSelectedArticle(undefined)}
+      />
     </SafeAreaContainer>
   );
 };

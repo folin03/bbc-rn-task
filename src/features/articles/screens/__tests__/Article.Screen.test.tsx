@@ -24,6 +24,8 @@ const mockArticles = [
     title: 'Mock Article 1',
     source: { id: 'bbc-news', name: 'BBC News' },
     publishedAt: '2026-05-15T12:00:00Z',
+    description: 'This is a mock article for testing.',
+    content: 'Full content of the mock article.',
   },
 ];
 
@@ -104,5 +106,14 @@ describe('ArticlesScreen', () => {
     const { getByTestId } = render(<ArticlesScreen />);
 
     expect(getByTestId('article-sort-by-switch')).toBeTruthy();
+  });
+
+  it('should open modal with selected article when article is pressed', () => {
+    const { getByTestId, getByText } = render(<ArticlesScreen />);
+
+    fireEvent.press(getByTestId(`article-card-${mockArticles[0].title}`));
+
+    expect(getByTestId('article-modal')).toBeTruthy();
+    expect(getByText(mockArticles[0].content)).toBeTruthy();
   });
 });

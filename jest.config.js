@@ -9,4 +9,8 @@ module.exports = {
     '^@theme/(.*)$': '<rootDir>/src/theme/$1',
     '^@api/(.*)$': '<rootDir>/src/api/$1',
   },
+
+  transformIgnorePatterns: [
+    'node_modules/(?!(react-native|@react-native|@react-navigation|@shopify/flash-list)/)',
+  ],
 };
