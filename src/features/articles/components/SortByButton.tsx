@@ -16,7 +16,7 @@ export const SortByButton: FC<SortByButtonProps> = props => {
   const { onPress, title, active } = props;
   return (
     <TouchableOpacity
-      testID="sort-by-button"
+      testID={`sort-by-button-${title.toLowerCase()}`} // e.g., "sort-by-button-popularity"
       onPress={onPress}
       style={[styles.sortButton, active && styles.sortButtonActive]}
       accessibilityRole="tab"

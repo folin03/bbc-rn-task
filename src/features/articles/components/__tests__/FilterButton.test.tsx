@@ -22,7 +22,7 @@ describe('SortByButton', () => {
       <SortByButton title="Latest" active={false} onPress={mockOnPress} />,
     );
 
-    fireEvent.press(getByTestId('sort-by-button'));
+    fireEvent.press(getByTestId('sort-by-button-latest'));
     expect(mockOnPress).toHaveBeenCalledTimes(1);
   });
 
@@ -31,7 +31,7 @@ describe('SortByButton', () => {
       <SortByButton title="Latest" active={false} onPress={mockOnPress} />,
     );
 
-    const fButton = getByTestId('sort-by-button');
+    const fButton = getByTestId('sort-by-button-latest');
     expect(fButton.props.accessibilityLabel).toBe('Latest articles');
     expect(fButton.props.accessibilityHint).toBe('Sort by Latest articles');
   });
@@ -41,7 +41,7 @@ describe('SortByButton', () => {
       <SortByButton title="Latest" active={true} onPress={mockOnPress} />,
     );
 
-    const button = getByTestId('sort-by-button');
+    const button = getByTestId('sort-by-button-latest');
     expect(button.props.accessibilityState.selected).toBe(true);
   });
 
@@ -50,7 +50,7 @@ describe('SortByButton', () => {
       <SortByButton title="Latest" active={false} onPress={mockOnPress} />,
     );
 
-    const button = getByTestId('sort-by-button');
+    const button = getByTestId('sort-by-button-latest');
     expect(button.props.accessibilityState.selected).toBe(false);
   });
 });

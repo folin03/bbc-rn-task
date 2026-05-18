@@ -16,7 +16,7 @@ export const DomainChip: FC<DomainChipProps> = ({ title }) => {
 
   return (
     <TouchableOpacity
-      testID="domain-chip"
+      testID={`domain-chip-${title}`}
       accessibilityRole="tab"
       accessibilityLabel={comLessTitle}
       accessibilityHint={`Select or deselect ${comLessTitle} news`}

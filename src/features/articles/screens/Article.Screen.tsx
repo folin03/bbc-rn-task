@@ -71,6 +71,7 @@ export const ArticlesScreen: FC = () => {
         <EmptyScreenInfo title="Error" subtitle={errorMessage} />
       ) : (
         <FlashList
+          testID="articles-list"
           data={articles}
           renderItem={({ item }) => (
             <ArticleCard article={item} onPress={setSelectedArticle} />

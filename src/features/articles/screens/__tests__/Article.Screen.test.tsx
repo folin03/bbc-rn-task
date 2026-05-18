@@ -74,7 +74,7 @@ describe('ArticlesScreen', () => {
       expect(getByText(expectedTitle)).toBeTruthy();
     });
 
-    const chips = getAllByTestId('domain-chip');
+    const chips = getAllByTestId(/^domain-chip-/); // Match any testId that starts with "domain-chip-"
     expect(chips.length).toBe(DOMAINS.length);
   });
 
@@ -88,7 +88,7 @@ describe('ArticlesScreen', () => {
     });
 
     const { getAllByTestId } = render(<ArticlesScreen />);
-    const chips = getAllByTestId('domain-chip');
+    const chips = getAllByTestId(/^domain-chip-/); // Match any testId that starts with "domain-chip-"
     expect(chips.length).toBeGreaterThan(0);
 
     fireEvent.press(chips[0]);

@@ -20,10 +20,13 @@ describe('DomainChip', () => {
       toggleDomain: mockToggleDomain,
     });
 
-    const { getByText, getByTestId } = render(<DomainChip title="bbc.com" />);
+    const domainTitle = 'bbc.com';
+    const { getByText, getByTestId } = render(
+      <DomainChip title={domainTitle} />,
+    );
 
     expect(getByText('bbc')).toBeTruthy();
-    const chip = getByTestId('domain-chip');
+    const chip = getByTestId(`domain-chip-${domainTitle}`);
     expect(chip.props.accessibilityLabel).toBe('bbc');
     expect(chip.props.accessibilityHint).toBe('Select or deselect bbc news');
     expect(chip.props.accessibilityState.selected).toBe(true);
@@ -38,12 +41,13 @@ describe('DomainChip', () => {
       toggleDomain: mockToggleDomain,
     });
 
-    const { getByTestId } = render(<DomainChip title="google.com" />);
+    const domainTitle = 'apple.com';
+    const { getByTestId } = render(<DomainChip title={domainTitle} />);
 
-    const chip = getByTestId('domain-chip');
+    const chip = getByTestId(`domain-chip-${domainTitle}`);
     fireEvent.press(chip);
     expect(mockToggleDomain).toHaveBeenCalledTimes(1);
-    expect(mockToggleDomain).toHaveBeenCalledWith('google.com');
+    expect(mockToggleDomain).toHaveBeenCalledWith('apple.com');
   });
 
   it('renders unselected state when the domain is not selected', () => {
@@ -52,9 +56,10 @@ describe('DomainChip', () => {
       toggleDomain: mockToggleDomain,
     });
 
-    const { getByTestId } = render(<DomainChip title="google.com" />);
+    const domainTitle = 'bbc.com';
+    const { getByTestId } = render(<DomainChip title={domainTitle} />);
 
-    const chip = getByTestId('domain-chip');
+    const chip = getByTestId(`domain-chip-${domainTitle}`);
     expect(chip.props.accessibilityState.selected).toBe(false);
     expect(chip).not.toHaveStyle({ backgroundColor: COLORS.primary });
   });
@@ -65,9 +70,10 @@ describe('DomainChip', () => {
       toggleDomain: mockToggleDomain,
     });
 
-    const { getByTestId } = render(<DomainChip title="ign.com" />);
+    const domainTitle = 'ign.com';
+    const { getByTestId } = render(<DomainChip title={domainTitle} />);
 
-    const chip = getByTestId('domain-chip');
+    const chip = getByTestId(`domain-chip-${domainTitle}`);
     expect(chip.props.accessibilityLabel).toBe('ign');
     expect(chip.props.accessibilityHint).toBe('Select or deselect ign news');
   });
