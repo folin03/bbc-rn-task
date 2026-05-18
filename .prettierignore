@@ -77,3 +77,6 @@ yarn-error.log
 # lock files
 Gemfile.lock
 package-lock.json
+
+# readme
+README.md
