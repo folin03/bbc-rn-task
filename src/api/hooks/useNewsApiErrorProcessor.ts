@@ -7,6 +7,6 @@ export const useNewsApiErrorProcessor = (error?: AxiosError) => {
     case 500:
       return 'Server error occurred. Please try again later.';
     default:
-      return 'An unexpected error occurred. Please try again later.';
+      return 'An unexpected error occurred. Please select another domain or try again later.';
   }
 };

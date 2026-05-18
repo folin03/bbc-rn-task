@@ -129,18 +129,8 @@ describe('fetchArticles', () => {
       domains: [],
     });
 
-    expect(mockedGet).toHaveBeenCalledWith('/everything', {
-      params: {
-        domains: '',
-        language: 'en',
-        sortBy: 'publishedAt',
-        page: 1,
-        pageSize: 20,
-        apiKey: Config.NEWS_API_KEY,
-      },
-    });
-
     expect(result).toEqual({
+      status: 'ok',
       articles: [],
       totalResults: 0,
     });

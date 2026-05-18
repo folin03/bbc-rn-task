@@ -95,8 +95,8 @@ export const ArticlesScreen: FC = () => {
           }
           ListEmptyComponent={
             <EmptyScreenInfo
-              title="No articles found"
-              subtitle="Try selecting different domains"
+              title={'Select domains'}
+              subtitle={'to show articles'}
             />
           }
         />

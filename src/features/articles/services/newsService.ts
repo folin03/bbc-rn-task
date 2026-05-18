@@ -25,6 +25,15 @@ export async function fetchArticles({
   pageParam = 1,
   sortBy = 'publishedAt',
 }: FetchArticlesParams) {
+  if (domains.length === 0) {
+    // mock empty response if no domains selected
+    return {
+      status: 'ok',
+      totalResults: 0,
+      articles: [],
+    };
+  }
+
   const response = await apiClient.get<NewsApiResponse>('/everything', {
     params: {
       domains: domains.join(','),
