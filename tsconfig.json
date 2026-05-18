@@ -1,7 +1,7 @@
 {
   "extends": "@react-native/typescript-config",
   "compilerOptions": {
-    "types": ["jest"],
+    "types": ["jest", "detox"],
     "paths": {
       "@articles": ["./src/features/articles"],
       "@articles/*": ["./src/features/articles/*"],
